@@ -99,9 +99,9 @@
 					//=================background=================
 				var aShp = L.layerGroup([a]),
 					//=================country=================
-					b1Shp = L.layerGroup([bUSA1,a]),
-					b2Shp = L.layerGroup([bUSA2,a]),
-					cShp = L.layerGroup([c,a]);
+					b1Shp = L.layerGroup([bUSA1]),
+					b2Shp = L.layerGroup([bUSA2]),
+					cShp = L.layerGroup([c]);
 			
 					//rivers
 				//background images
@@ -110,6 +110,18 @@
 					//subdomains: 'abcd',
 					maxZoom: 17
 				});
+				var OpenStreetMap_Mapnik = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				maxZoom: 19,
+				attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+				});
+				var Esri_WorldImagery = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+					attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
+				});
+				var Roads = L.tileLayer('https://korona.geog.uni-heidelberg.de/tiles/roads/x={x}&y={y}&z={z}', {
+					maxZoom: 17,
+					attribution: 'Imagery from <a href="http://giscience.uni-hd.de/">GIScience Research Group @ University of Heidelberg</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+				});
+
 				
 				//set map extent, view, and default layer
 				var map = L.map('map', {
@@ -119,6 +131,8 @@
 				var baseMaps = {
 					//"Streets": OpenStreetMap_Mapnik,
 					//"Aerial": Esri_WorldImagery,
+					//"Roads": Roads,
+					//"Openstreetmap": CartoDB_DarkMatterNoLabels,
 					"Terrain": CartoDB_DarkMatterNoLabels,
 					"USA Simplified": b1Shp,
 					"USA Detailed": b2Shp,
