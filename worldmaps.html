@@ -26,6 +26,7 @@
 		<script type="text/javascript" src="https://cmmitchell.github.io/WorldMap/Shapefiles/USA/USA_Simplified.js"></script>	
 		<script type="text/javascript" src="https://cmmitchell.github.io/WorldMap/Shapefiles/World/Country_2007.js"></script>
 		<script type="text/javascript" src="https://cmmitchell.github.io/Webmap2/Java/gjson/Background.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/WorldMap/Shapefiles/CountryDis.js"></script>
 		
 		
 <!doctype html>
@@ -95,13 +96,19 @@
 					layer.bindPopup("<b>Country:</b> " + feature.properties.CNTRY_NAME,popupOptions);
 										}
 					})
+					
+					cdis = L.geoJson(countryDis, {
+					style: disstyle
+					
+						})
 				//assigning variables to layers for control	
 					//=================background=================
 				var aShp = L.layerGroup([a]),
 					//=================country=================
 					b1Shp = L.layerGroup([bUSA1]),
 					b2Shp = L.layerGroup([bUSA2]),
-					cShp = L.layerGroup([c]);
+					cShp = L.layerGroup([c]),
+					cdisShp = L.layerGroup([cdis]);
 			
 					//rivers
 				//background images
@@ -166,6 +173,7 @@
 					"USA Simplified": b1Shp,
 					"USA Detailed": b2Shp,
 					"World Simplified":cShp
+					"Alt":cdisShp
 				};
 				//add control to map
 				L.control.layers(baseMaps, overLays).addTo(map);
