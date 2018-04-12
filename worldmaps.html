@@ -27,6 +27,9 @@
 		<script type="text/javascript" src="https://cmmitchell.github.io/WorldMap/Shapefiles/World/Country_2007.js"></script>
 		<script type="text/javascript" src="https://cmmitchell.github.io/Webmap2/Java/gjson/Background.js"></script>
 		<script type="text/javascript" src="https://cmmitchell.github.io/WorldMap/Shapefiles/CountryDis.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Webmap2/Java/gjson/Graticule_30.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Webmap2/Java/gjson/Graticule_5.js"></script>
+		<script type="text/javascript" src="https://cmmitchell.github.io/Webmap2/Java/gjson/Graticule_1.js"></script>
 		
 		
 <!doctype html>
@@ -99,8 +102,31 @@
 					
 					cdis = L.geoJson(countryDis, {
 					style: disstyle
+						
 					
-						})
+					
+					})
+				
+					k = L.geoJson(grat, {
+					style: gratst,
+					//onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
+					//layer.bindPopup("<b>degrees:</b> " + feature.properties.degrees,popupOptions);
+					//}
+					})
+				
+					k1 = L.geoJson(grat1, {
+					style: gratsty1,
+					//onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
+					//layer.bindPopup("<b>degrees:</b> " + feature.properties.degrees,popupOptions);
+					//}
+					})
+				
+					k5 = L.geoJson(grat5, {
+					style: gratsty5,
+					//onEachFeature: function (feature, layer){popupOptions = {color: "#5D6D7E", maxWidth: 250};
+					//layer.bindPopup("<b>degrees:</b> " + feature.properties.degrees,popupOptions);
+					//}
+					})
 				//assigning variables to layers for control	
 					//=================background=================
 				var aShp = L.layerGroup([a]),
@@ -108,6 +134,9 @@
 					b1Shp = L.layerGroup([bUSA1]),
 					b2Shp = L.layerGroup([bUSA2]),
 					cShp = L.layerGroup([c,a]),
+				    kShp = L.layerGroup([k]),
+				    k1Shp = L.layerGroup([k1]),
+				    k5Shp = L.layerGroup([k5]),
 					cdisShp = L.layerGroup([cdis]);
 			
 					//rivers
@@ -173,7 +202,10 @@
 					"USA Simplified": b1Shp,
 					"USA Detailed": b2Shp,
 					"World Simplified":cShp,
-					"Alt":cdisShp
+					"Alt":cdisShp,
+					"30":kShp,
+					"5":k1Shp,
+					"1":k5Shp
 				};
 				//add control to map
 				L.control.layers(baseMaps, overLays).addTo(map);
